@@ -17,7 +17,8 @@ TEMPLATE = app
 SOURCES += src/main.cpp \
     src/views/mainwindow.cpp
 
-HEADERS  += src/views/mainwindow.hpp
+HEADERS  += src/views/mainwindow.hpp \
+    src/utils/LogManager.hpp
 
 FORMS    += ui/mainwindow.ui
 
