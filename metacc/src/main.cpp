@@ -1,5 +1,6 @@
 #include "src/views/mainwindow.hpp"
 #include "src/utils/LogManager.hpp"
+#include "src/utils/FileManager.hpp"
 #include <QApplication>
 
 int main(int argc, char *argv[])
