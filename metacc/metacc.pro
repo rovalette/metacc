@@ -14,11 +14,11 @@ TARGET = metacc
 TEMPLATE = app
 
 
-SOURCES += main.cpp\
-        mainwindow.cpp
+SOURCES += src/main.cpp \
+    src/views/mainwindow.cpp
 
-HEADERS  += mainwindow.hpp
+HEADERS  += src/views/mainwindow.hpp
 
-FORMS    += mainwindow.ui
+FORMS    += ui/mainwindow.ui
 
 OTHER_FILES +=
