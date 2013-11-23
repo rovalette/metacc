@@ -19,7 +19,8 @@ SOURCES += src/main.cpp \
 
 HEADERS  += src/views/mainwindow.hpp \
     src/utils/LogManager.hpp \
-    src/utils/FileManager.hpp
+    src/utils/FileManager.hpp \
+    src/model/classdefinition.hpp
 
 FORMS    += ui/mainwindow.ui
 
