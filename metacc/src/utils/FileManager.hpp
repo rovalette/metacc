@@ -12,10 +12,14 @@ protected:
 
 public:
     File(const std::string& fileName = "") :
-        _fileName("/tmp/" + fileName), _opened(false) {}
+        _fileName(fileName), _opened(false) {}
 
     void setFileName(const std::string& fileName) {
-        _fileName = "/tmp/" + fileName;
+        _fileName = fileName;
+    }
+
+    const std::string& getFileName() const {
+        return _fileName;
     }
 
     bool open() {

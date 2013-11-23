@@ -9,10 +9,10 @@ void ClassWriter::write()
     Log log;
 
     _file.setFileName(_class.FileName + ".hpp");
-    log << _class.FileName << std::endl;
+
     if (_file.open())
     {
-        log << "File opened" << std::endl;
+        log << "File " << _file.getFileName() << "opened" << std::endl;
         writeTopGuardian();
         writeIncludes();
         writeClassBeginning();
@@ -20,6 +20,10 @@ void ClassWriter::write()
         writeDownGuardian();
         _file.close();
         log << "File closed" << std::endl;
+    }
+    else
+    {
+        log << "Cannot open file : " << _file.getFileName() << std::endl;
     }
 }
 

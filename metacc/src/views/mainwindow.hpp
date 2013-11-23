@@ -21,6 +21,8 @@ private slots:
 
     void on_pushButton_OK_clicked();
 
+    void on_pushButton_Browse_clicked();
+
 private:
     Ui::MainWindow *ui;
 

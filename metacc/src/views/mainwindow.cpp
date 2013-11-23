@@ -1,6 +1,7 @@
 #include "src/views/mainwindow.hpp"
 #include "ui_mainwindow.h"
 #include <QMessageBox>
+#include <QFileDialog>
 #include <QString>
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -35,7 +36,10 @@ bool MainWindow::checkFields()
 void MainWindow::createClassDefintionObject()
 {
     _definition.ClassName = ui->lineEdit_ClassName->text().toStdString();
-    _definition.FileName = QString(_definition.ClassName.c_str()).toLower().toStdString();
+    if (!ui->lineEdit_Path->text().isEmpty() && !ui->lineEdit_Path->text().endsWith('/'))
+        ui->lineEdit_Path->setText(ui->lineEdit_Path->text() + '/');
+    _definition.FileName = ui->lineEdit_Path->text().toStdString() +
+            QString(_definition.ClassName.c_str()).toLower().toStdString();
     _definition.Guardian = QString(_definition.ClassName.c_str()).toUpper().toStdString();
 }
 
@@ -52,5 +56,18 @@ void MainWindow::on_pushButton_OK_clicked()
         createClassDefintionObject();
         _writer.setClassDefinition(_definition);
         _writer.write();
+    }
+}
+
+void MainWindow::on_pushButton_Browse_clicked()
+{
+    QString directory = QFileDialog::getExistingDirectory(this,
+                                                          tr("Chemin"),
+                                                          "/tmp/",
+                                                          QFileDialog::DontResolveSymlinks);
+
+    if (!directory.isEmpty())
+    {
+        ui->lineEdit_Path->setText(directory);
     }
 }
