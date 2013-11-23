@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>images/valider.png</file>
+        <file>images/annuler.png</file>
+        <file>images/moins.png</file>
+        <file>images/plus.png</file>
+    </qresource>
+</RCC>

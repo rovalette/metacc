@@ -75,12 +75,20 @@
         <property name="text">
          <string>Quitter</string>
         </property>
+        <property name="icon">
+         <iconset resource="../resources/resources.qrc">
+          <normaloff>:/images/images/annuler.png</normaloff>:/images/images/annuler.png</iconset>
+        </property>
        </widget>
       </item>
       <item>
        <widget class="QPushButton" name="pushButton_OK">
         <property name="text">
          <string>Générer</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../resources/resources.qrc">
+          <normaloff>:/images/images/valider.png</normaloff>:/images/images/valider.png</iconset>
         </property>
        </widget>
       </item>
@@ -109,6 +117,8 @@
   <widget class="QStatusBar" name="statusBar"/>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="../resources/resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

@@ -24,3 +24,6 @@ HEADERS  += src/views/mainwindow.hpp \
 FORMS    += ui/mainwindow.ui
 
 OTHER_FILES +=
+
+RESOURCES += \
+    resources/resources.qrc
