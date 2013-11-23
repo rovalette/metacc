@@ -2,6 +2,7 @@
 #define MAINWINDOW_HPP
 
 #include <QMainWindow>
+#include "src/model/classwriter.hpp"
 
 namespace Ui {
 class MainWindow;
@@ -23,7 +24,11 @@ private slots:
 private:
     Ui::MainWindow *ui;
 
+    ClassWriter     _writer;
+    ClassDefinition _definition;
+
     bool checkFields();
+    void createClassDefintionObject();
 };
 
 #endif // MAINWINDOW_HPP

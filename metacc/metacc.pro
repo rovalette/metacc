@@ -15,12 +15,15 @@ TEMPLATE = app
 
 
 SOURCES += src/main.cpp \
-    src/views/mainwindow.cpp
+    src/views/mainwindow.cpp \
+    src/model/classwriter.cpp \
+    src/utils/LogManager.cpp
 
 HEADERS  += src/views/mainwindow.hpp \
     src/utils/LogManager.hpp \
     src/utils/FileManager.hpp \
-    src/model/classdefinition.hpp
+    src/model/classdefinition.hpp \
+    src/model/classwriter.hpp
 
 FORMS    += ui/mainwindow.ui
 

@@ -70,7 +70,7 @@ public:
 	}
 };
 
-std::ostream * Log::_os(&std::cout);
+//std::ostream * Log::_os(&std::cout);
 
 // specialized operator << for bool
 template <>

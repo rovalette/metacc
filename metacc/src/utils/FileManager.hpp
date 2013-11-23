@@ -11,11 +11,11 @@ protected:
     bool            _opened;
 
 public:
-    File(const std::string& fileName) :
-        _fileName(fileName), _opened(false) {}
+    File(const std::string& fileName = "") :
+        _fileName("/tmp/" + fileName), _opened(false) {}
 
     void setFileName(const std::string& fileName) {
-        _fileName = fileName;
+        _fileName = "/tmp/" + fileName;
     }
 
     bool open() {

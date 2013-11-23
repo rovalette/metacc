@@ -5,9 +5,9 @@
 
 struct ClassDefinition
 {
-    std::string     className;
-    std::string     guardian;
-    std::string     fileName;
+    std::string     ClassName;
+    std::string     Guardian;
+    std::string     FileName;
 };
 
 #endif // __CLASS_DEFINITION_HPP__
