@@ -3,7 +3,7 @@
 
 #include <fstream>
 
-class FileManager
+class File
 {
 protected:
     std::string     _fileName;
@@ -11,32 +11,38 @@ protected:
     bool            _opened;
 
 public:
-    FileManager(const std::string& fileName) :
+    File(const std::string& fileName) :
         _fileName(fileName), _opened(false) {}
+
+    void setFileName(const std::string& fileName) {
+        _fileName = fileName;
+    }
 
     bool open() {
         if (_opened) _file.close(), _opened = false;
-        _file.open(_fileName.c_str());
+        _file.open(_fileName.c_str(), std::fstream::out | std::fstream::trunc);
         if (!_file.fail()) _opened = true;
         return (_opened);
     }
 
     bool exists() const {
-        std::ifstream f(_fileName.c_str());
-        return !f.fail();
+        std::ifstream f(_fileName.c_str(), std::fstream::out | std::fstream::app);
+        bool exists = !f.fail();
+        f.close();
+        return exists;
     }
 
     void close() {
         if (_file) _file.close(), _opened = false;
     }
 
-    inline FileManager& operator<<(const std::string& str) {
+    inline File& operator<<(const std::string& str) {
         _file << str;
         return *this;
     }
 
     // std endl, flush, ends
-    inline FileManager& operator<<(std::ostream& (*pf)(std::ostream&)) {
+    inline File& operator<<(std::ostream& (*pf)(std::ostream&)) {
         pf(*_file);
         return *this;
     }
