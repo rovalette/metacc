@@ -43,7 +43,7 @@ public:
 
     // std endl, flush, ends
     inline File& operator<<(std::ostream& (*pf)(std::ostream&)) {
-        pf(*_file);
+        pf(_file);
         return *this;
     }
 };
