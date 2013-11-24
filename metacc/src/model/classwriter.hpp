@@ -16,6 +16,12 @@ protected:
     void writeClassBeginning();
     void writeClassEnding();
     void writeDownGuardian();
+    void writeDefaultConstructorHPP();
+    void writeDefaultConstructorCPP();
+    void writeCopyConstructorHPP();
+    void writeCopyConstructorCPP();
+    void writeDestructorHPP();
+    void writeDestructorCPP();
 
 public:
     ClassWriter();

@@ -35,6 +35,8 @@ bool MainWindow::checkFields()
 
 void MainWindow::createClassDefintionObject()
 {
+    _definition.twoFiles = ui->checkBox_TwoFiles->isChecked();
+
     _definition.ClassName = ui->lineEdit_ClassName->text().toStdString();
     if (!ui->lineEdit_Path->text().isEmpty() && !ui->lineEdit_Path->text().endsWith('/'))
         ui->lineEdit_Path->setText(ui->lineEdit_Path->text() + '/');
@@ -42,6 +44,11 @@ void MainWindow::createClassDefintionObject()
             QString(_definition.ClassName.c_str()).toLower().toStdString();
     _definition.Guardian = "__" +
             QString(_definition.ClassName.c_str()).toUpper().toStdString() + "_HPP__";
+
+    _definition.DefaultConstructor = ui->checkBox_DefaultConstructor->isChecked();
+    _definition.CopyConstructor = ui->checkBox_CopyConstructor->isChecked();
+    _definition.Destructor = ui->checkBox_Destructor->isChecked();
+    _definition.VirtualDestructor = ui->checkBox_VirtualDestructor->isChecked();
 }
 
 void MainWindow::on_pushButton_Quit_clicked()
@@ -73,5 +80,17 @@ void MainWindow::on_pushButton_Browse_clicked()
     if (!directory.isEmpty())
     {
         ui->lineEdit_Path->setText(directory);
+    }
+}
+
+void MainWindow::on_checkBox_Destructor_stateChanged(int arg1)
+{
+    if (arg1 == Qt::Unchecked)
+    {
+        ui->checkBox_VirtualDestructor->setEnabled(false);
+    }
+    else
+    {
+        ui->checkBox_VirtualDestructor->setEnabled(true);
     }
 }
