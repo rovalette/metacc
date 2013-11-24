@@ -22,6 +22,8 @@ protected:
     void writeCopyConstructorCPP();
     void writeDestructorHPP();
     void writeDestructorCPP();
+    void writeComparisonOperatorDecl();
+    void writeComparisonOperatorDef();
 
 public:
     ClassWriter();

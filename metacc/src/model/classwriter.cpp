@@ -31,8 +31,16 @@ void ClassWriter::writeHPP()
             writeCopyConstructorHPP();
         if (_class.Destructor)
             writeDestructorHPP();
+        _file << std::endl;
+        if (_class.ComparisonOperator)
+            writeComparisonOperatorDecl();
 
         writeClassEnding();
+
+
+        if (_class.ComparisonOperator)
+            writeComparisonOperatorDef();
+
         writeDownGuardian();
         _file.close();
         log << "File closed" << std::endl;
@@ -68,6 +76,7 @@ void ClassWriter::writeCPP()
             writeDestructorCPP();
             _file << std::endl;
         }
+
         _file.close();
         log << "File closed" << std::endl;
     }
@@ -106,7 +115,7 @@ void ClassWriter::writeDownGuardian()
 
 void ClassWriter::writeDefaultConstructorHPP()
 {
-    _file << _class.ClassName << "()" << (_class.twoFiles?";":" { }");
+    _file << "\t" << _class.ClassName << "()" << (_class.twoFiles?";":" { }");
     _file << std::endl;
 }
 
@@ -119,7 +128,7 @@ void ClassWriter::writeDefaultConstructorCPP()
 
 void ClassWriter::writeCopyConstructorHPP()
 {
-    _file << _class.ClassName << "(const " << _class.ClassName << "& __in_";
+    _file << "\t" << _class.ClassName << "(const " << _class.ClassName << "& __in_";
     _file << ")" << (_class.twoFiles?";":" { }");
     _file << std::endl;
 }
@@ -133,7 +142,7 @@ void ClassWriter::writeCopyConstructorCPP()
 
 void ClassWriter::writeDestructorHPP()
 {
-    _file << (_class.VirtualDestructor?"virtual ":"");
+    _file << "\t" << (_class.VirtualDestructor?"virtual ":"");
     _file << "~" << _class.ClassName << "()" << (_class.twoFiles?";":" { }");
     _file << std::endl;
 }
@@ -143,4 +152,26 @@ void ClassWriter::writeDestructorCPP()
     _file << _class.ClassName << "::" << "~" << _class.ClassName;
     _file << "()" << std::endl;
     _file << "{" << std::endl << std::endl << "}" << std::endl;
+}
+
+void ClassWriter::writeComparisonOperatorDecl()
+{
+    _file << "\tfriend bool operator==(const " << _class.ClassName << "& a, const ";
+    _file << _class.ClassName << "& b);" << std::endl;
+    _file << "\tfriend bool operator!=(const " << _class.ClassName << "& a, const ";
+    _file << _class.ClassName << "& b);" << std::endl;
+}
+
+void ClassWriter::writeComparisonOperatorDef()
+{
+    _file << "inline bool operator==(const " << _class.ClassName << "& a, const ";
+    _file << _class.ClassName << "& b)" << std::endl << "{" << std::endl;
+    _file << "\t// TODO : implement your comparison code here" << std::endl;
+    _file << "\tbool ret = (&a == &b);" << std::endl << "\treturn ret;" << std::endl;
+    _file << "}" << std::endl << std::endl;
+
+    _file << "inline bool operator!=(const " << _class.ClassName << "& a, const ";
+    _file << _class.ClassName << "& b)" << std::endl << "{" << std::endl;
+    _file << "\treturn !(a==b);" << std::endl;
+    _file << "}" << std::endl << std::endl;
 }

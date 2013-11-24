@@ -49,6 +49,8 @@ void MainWindow::createClassDefintionObject()
     _definition.CopyConstructor = ui->checkBox_CopyConstructor->isChecked();
     _definition.Destructor = ui->checkBox_Destructor->isChecked();
     _definition.VirtualDestructor = ui->checkBox_VirtualDestructor->isChecked();
+
+    _definition.ComparisonOperator = ui->checkBox_OpComparison->isChecked();
 }
 
 void MainWindow::on_pushButton_Quit_clicked()

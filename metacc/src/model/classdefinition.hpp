@@ -15,6 +15,8 @@ struct ClassDefinition
     bool            CopyConstructor;
     bool            Destructor;
     bool            VirtualDestructor;
+
+    bool            ComparisonOperator;
 };
 
 #endif // __CLASS_DEFINITION_HPP__
