@@ -29,6 +29,8 @@ public:
     }
 
     void write();
+    void writeHPP();
+    void writeCPP();
 };
 
 #endif // __CLASS_WRITER_HPP__

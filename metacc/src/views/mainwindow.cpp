@@ -55,7 +55,10 @@ void MainWindow::on_pushButton_OK_clicked()
     {
         createClassDefintionObject();
         _writer.setClassDefinition(_definition);
-        _writer.write();
+        if (ui->checkBox_TwoFiles->isChecked())
+            _writer.write();
+        else
+            _writer.writeHPP();
     }
 }
 
