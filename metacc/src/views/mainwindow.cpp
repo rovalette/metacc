@@ -40,7 +40,8 @@ void MainWindow::createClassDefintionObject()
         ui->lineEdit_Path->setText(ui->lineEdit_Path->text() + '/');
     _definition.FileName = ui->lineEdit_Path->text().toStdString() +
             QString(_definition.ClassName.c_str()).toLower().toStdString();
-    _definition.Guardian = QString(_definition.ClassName.c_str()).toUpper().toStdString();
+    _definition.Guardian = "__" +
+            QString(_definition.ClassName.c_str()).toUpper().toStdString() + "_HPP__";
 }
 
 void MainWindow::on_pushButton_Quit_clicked()
