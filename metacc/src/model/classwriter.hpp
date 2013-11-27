@@ -24,6 +24,8 @@ protected:
     void writeDestructorCPP();
     void writeComparisonOperatorDecl();
     void writeComparisonOperatorDef();
+    void writeRelationalOperatorDecl();
+    void writeRelationalOperatorDef();
 
 public:
     ClassWriter();

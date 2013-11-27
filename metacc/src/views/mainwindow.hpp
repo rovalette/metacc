@@ -25,6 +25,10 @@ private slots:
 
     void on_checkBox_Destructor_stateChanged(int arg1);
 
+    void on_checkBox_OpRelational_stateChanged(int arg1);
+
+    void on_checkBox_OpComparison_stateChanged(int arg1);
+
 private:
     Ui::MainWindow *ui;
 

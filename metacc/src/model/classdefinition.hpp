@@ -17,6 +17,7 @@ struct ClassDefinition
     bool            VirtualDestructor;
 
     bool            ComparisonOperator;
+    bool            RelationalOperator;
 };
 
 #endif // __CLASS_DEFINITION_HPP__

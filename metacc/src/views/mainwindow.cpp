@@ -51,6 +51,8 @@ void MainWindow::createClassDefintionObject()
     _definition.VirtualDestructor = ui->checkBox_VirtualDestructor->isChecked();
 
     _definition.ComparisonOperator = ui->checkBox_OpComparison->isChecked();
+    _definition.RelationalOperator = ui->checkBox_OpRelational->isChecked();
+
 }
 
 void MainWindow::on_pushButton_Quit_clicked()
@@ -94,5 +96,21 @@ void MainWindow::on_checkBox_Destructor_stateChanged(int arg1)
     else
     {
         ui->checkBox_VirtualDestructor->setEnabled(true);
+    }
+}
+
+void MainWindow::on_checkBox_OpRelational_stateChanged(int arg1)
+{
+    if (arg1 == Qt::Checked)
+    {
+        ui->checkBox_OpComparison->setChecked(true);
+    }
+}
+
+void MainWindow::on_checkBox_OpComparison_stateChanged(int arg1)
+{
+    if (arg1 == Qt::Unchecked)
+    {
+        ui->checkBox_OpRelational->setChecked(false);
     }
 }

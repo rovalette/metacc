@@ -34,12 +34,16 @@ void ClassWriter::writeHPP()
         _file << std::endl;
         if (_class.ComparisonOperator)
             writeComparisonOperatorDecl();
+        if (_class.RelationalOperator)
+            writeRelationalOperatorDecl();
 
         writeClassEnding();
 
 
         if (_class.ComparisonOperator)
             writeComparisonOperatorDef();
+        if (_class.RelationalOperator)
+            writeRelationalOperatorDef();
 
         writeDownGuardian();
         _file.close();
@@ -166,12 +170,48 @@ void ClassWriter::writeComparisonOperatorDef()
 {
     _file << "inline bool operator==(const " << _class.ClassName << "& a, const ";
     _file << _class.ClassName << "& b)" << std::endl << "{" << std::endl;
-    _file << "\t// TODO : implement your comparison code here" << std::endl;
+    _file << "\t// TODO : implement your comparison operator code here" << std::endl;
     _file << "\tbool ret = (&a == &b);" << std::endl << "\treturn ret;" << std::endl;
     _file << "}" << std::endl << std::endl;
 
     _file << "inline bool operator!=(const " << _class.ClassName << "& a, const ";
     _file << _class.ClassName << "& b)" << std::endl << "{" << std::endl;
     _file << "\treturn !(a==b);" << std::endl;
+    _file << "}" << std::endl << std::endl;
+}
+
+void ClassWriter::writeRelationalOperatorDecl()
+{
+    _file << "\tfriend bool operator<(const " << _class.ClassName << "& a, const ";
+    _file << _class.ClassName << "& b);" << std::endl;
+    _file << "\tfriend bool operator<=(const " << _class.ClassName << "& a, const ";
+    _file << _class.ClassName << "& b);" << std::endl;
+    _file << "\tfriend bool operator>(const " << _class.ClassName << "& a, const ";
+    _file << _class.ClassName << "& b);" << std::endl;
+    _file << "\tfriend bool operator>=(const " << _class.ClassName << "& a, const ";
+    _file << _class.ClassName << "& b);" << std::endl;
+}
+
+void ClassWriter::writeRelationalOperatorDef()
+{
+    _file << "inline bool operator<(const " << _class.ClassName << "& a, const ";
+    _file << _class.ClassName << "& b)" << std::endl << "{" << std::endl;
+    _file << "\t// TODO : implement your operator < code here" << std::endl;
+    _file << "\tbool ret = (&a < &b);" << std::endl << "\treturn ret;" << std::endl;
+    _file << "}" << std::endl << std::endl;
+
+    _file << "inline bool operator<=(const " << _class.ClassName << "& a, const ";
+    _file << _class.ClassName << "& b)" << std::endl << "{" << std::endl;
+    _file << "\treturn ((a<b) || (a==b));" << std::endl;
+    _file << "}" << std::endl << std::endl;
+
+    _file << "inline bool operator>(const " << _class.ClassName << "& a, const ";
+    _file << _class.ClassName << "& b)" << std::endl << "{" << std::endl;
+    _file << "\treturn !(a<=b);" << std::endl;
+    _file << "}" << std::endl << std::endl;
+
+    _file << "inline bool operator>=(const " << _class.ClassName << "& a, const ";
+    _file << _class.ClassName << "& b)" << std::endl << "{" << std::endl;
+    _file << "\treturn !(a<b);" << std::endl;
     _file << "}" << std::endl << std::endl;
 }
