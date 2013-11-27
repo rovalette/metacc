@@ -125,3 +125,16 @@ void MainWindow::on_pushButton_Add_clicked()
     _fmw->init();
     _fmw->show();
 }
+
+void MainWindow::addFieldMember(FieldMember fm)
+{
+    int row = ui->listWidget_FieldMember->count();
+    _fms.push_back(fm);
+
+    std::string label = fm.Name;
+    label += " (" + fm.Type += ")";
+
+    ui->listWidget_FieldMember->insertItem(
+                row,
+                QString(label.c_str()));
+}

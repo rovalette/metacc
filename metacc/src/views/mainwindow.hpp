@@ -2,6 +2,7 @@
 #define MAINWINDOW_HPP
 
 #include <QMainWindow>
+#include <vector>
 #include "src/model/classwriter.hpp"
 #include "ui/fieldmemberwindow.hpp"
 
@@ -16,6 +17,8 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+
+    void addFieldMember(FieldMember fm);
 
 private slots:
     void on_pushButton_Quit_clicked();
@@ -38,10 +41,12 @@ private:
     ClassWriter     _writer;
     ClassDefinition _definition;
 
-    FieldMemberWindow * _fmw;
+    FieldMemberWindow       *   _fmw;
+    std::vector<FieldMember>    _fms;
 
     bool checkFields();
     void createClassDefintionObject();
+
 };
 
 #endif // MAINWINDOW_HPP

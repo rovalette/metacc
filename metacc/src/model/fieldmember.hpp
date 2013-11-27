@@ -14,6 +14,8 @@ struct FieldMember
 
     bool                isConst;
     bool                isStatic;
+    bool                hasGet;
+    bool                hasSet;
 };
 
 #endif // __FIELDMEMBER_HPP

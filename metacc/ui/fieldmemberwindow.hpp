@@ -2,6 +2,7 @@
 #define FIELDMEMBERWINDOW_HPP
 
 #include <QDialog>
+#include "src/model/fieldmember.hpp"
 
 namespace Ui {
 class FieldMemberWindow;

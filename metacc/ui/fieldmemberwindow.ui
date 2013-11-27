@@ -16,8 +16,74 @@
   <property name="modal">
    <bool>true</bool>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
-   <item>
+  <widget class="QWidget" name="horizontalLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>12</x>
+     <y>363</y>
+     <width>242</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <spacer name="horizontalSpacer">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item>
+     <widget class="QPushButton" name="pushButton_Cancel">
+      <property name="text">
+       <string>Annuler</string>
+      </property>
+      <property name="icon">
+       <iconset resource="../resources/resources.qrc">
+        <normaloff>:/images/images/annuler.png</normaloff>:/images/images/annuler.png</iconset>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="pushButton_OK">
+      <property name="text">
+       <string>OK</string>
+      </property>
+      <property name="icon">
+       <iconset resource="../resources/resources.qrc">
+        <normaloff>:/images/images/valider.png</normaloff>:/images/images/valider.png</iconset>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QGroupBox" name="groupBox">
+   <property name="geometry">
+    <rect>
+     <x>19</x>
+     <y>19</y>
+     <width>331</width>
+     <height>291</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>Paramètres</string>
+   </property>
+   <widget class="QWidget" name="formLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>40</y>
+      <width>252</width>
+      <height>229</height>
+     </rect>
+    </property>
     <layout class="QFormLayout" name="formLayout">
      <item row="0" column="0">
       <widget class="QLabel" name="label">
@@ -55,7 +121,26 @@
       </widget>
      </item>
      <item row="2" column="1">
-      <widget class="QComboBox" name="comboBox_Range"/>
+      <widget class="QComboBox" name="comboBox_Range">
+       <property name="currentIndex">
+        <number>0</number>
+       </property>
+       <item>
+        <property name="text">
+         <string>public</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>protected</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>private</string>
+        </property>
+       </item>
+      </widget>
      </item>
      <item row="3" column="0">
       <widget class="QLabel" name="label_4">
@@ -135,60 +220,8 @@
       </layout>
      </item>
     </layout>
-   </item>
-   <item>
-    <spacer name="verticalSpacer">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>20</width>
-       <height>99</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
-   <item>
-    <layout class="QHBoxLayout" name="horizontalLayout">
-     <item>
-      <spacer name="horizontalSpacer">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pushButton_Cancel">
-       <property name="text">
-        <string>Annuler</string>
-       </property>
-       <property name="icon">
-        <iconset resource="../resources/resources.qrc">
-         <normaloff>:/images/images/annuler.png</normaloff>:/images/images/annuler.png</iconset>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pushButton_OK">
-       <property name="text">
-        <string>OK</string>
-       </property>
-       <property name="icon">
-        <iconset resource="../resources/resources.qrc">
-         <normaloff>:/images/images/valider.png</normaloff>:/images/images/valider.png</iconset>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </item>
-  </layout>
+   </widget>
+  </widget>
  </widget>
  <resources>
   <include location="../resources/resources.qrc"/>

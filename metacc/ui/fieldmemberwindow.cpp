@@ -1,5 +1,6 @@
 #include "fieldmemberwindow.hpp"
 #include "ui_fieldmemberwindow.h"
+#include "src/views/mainwindow.hpp"
 #include <QMessageBox>
 
 FieldMemberWindow::FieldMemberWindow(QWidget *parent) :
@@ -36,7 +37,20 @@ void FieldMemberWindow::on_pushButton_OK_clicked()
     // check everything is ok
     if (checkFields())
     {
+        FieldMember fm;
 
+        fm.Name = ui->lineEdit_Name->text().toStdString();
+        fm.Type = ui->lineEdit_Type->text().toStdString();
+        fm.Default = ui->lineEdit_Default->text().toStdString();
+        fm.isConst = ui->checkBox_Const->isChecked();
+        fm.isStatic = ui->checkBox_Static->isChecked();
+        fm.hasGet = ui->checkBox_Get->isChecked();
+        fm.hasSet = ui->checkBox_Set->isChecked();
+        fm.range = (RANGE) ui->comboBox_Range->currentIndex();
+
+        MainWindow * mw = dynamic_cast<MainWindow*>(parent());
+
+        mw->addFieldMember(fm);
         close();
     }
 }
