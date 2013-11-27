@@ -52,6 +52,7 @@ void MainWindow::createClassDefintionObject()
 
     _definition.ComparisonOperator = ui->checkBox_OpComparison->isChecked();
     _definition.RelationalOperator = ui->checkBox_OpRelational->isChecked();
+    _definition.CopyOperator = ui->checkBox_OpCopy->isChecked();
 
 }
 

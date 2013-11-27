@@ -18,6 +18,7 @@ struct ClassDefinition
 
     bool            ComparisonOperator;
     bool            RelationalOperator;
+    bool            CopyOperator;
 };
 
 #endif // __CLASS_DEFINITION_HPP__

@@ -32,6 +32,8 @@ void ClassWriter::writeHPP()
         if (_class.Destructor)
             writeDestructorHPP();
         _file << std::endl;
+        if (_class.CopyOperator)
+            writeCopyOperatorDecl();
         if (_class.ComparisonOperator)
             writeComparisonOperatorDecl();
         if (_class.RelationalOperator)
@@ -39,7 +41,8 @@ void ClassWriter::writeHPP()
 
         writeClassEnding();
 
-
+        if (_class.CopyOperator)
+            writeCopyOperatorDef();
         if (_class.ComparisonOperator)
             writeComparisonOperatorDef();
         if (_class.RelationalOperator)
@@ -171,7 +174,7 @@ void ClassWriter::writeComparisonOperatorDef()
     _file << "inline bool operator==(const " << _class.ClassName << "& a, const ";
     _file << _class.ClassName << "& b)" << std::endl << "{" << std::endl;
     _file << "\t// TODO : implement your comparison operator code here" << std::endl;
-    _file << "\tbool ret = (&a == &b);" << std::endl << "\treturn ret;" << std::endl;
+    _file << "\treturn true;" << std::endl;
     _file << "}" << std::endl << std::endl;
 
     _file << "inline bool operator!=(const " << _class.ClassName << "& a, const ";
@@ -197,7 +200,7 @@ void ClassWriter::writeRelationalOperatorDef()
     _file << "inline bool operator<(const " << _class.ClassName << "& a, const ";
     _file << _class.ClassName << "& b)" << std::endl << "{" << std::endl;
     _file << "\t// TODO : implement your operator < code here" << std::endl;
-    _file << "\tbool ret = (&a < &b);" << std::endl << "\treturn ret;" << std::endl;
+    _file << "\treturn true;" << std::endl;
     _file << "}" << std::endl << std::endl;
 
     _file << "inline bool operator<=(const " << _class.ClassName << "& a, const ";
@@ -213,5 +216,20 @@ void ClassWriter::writeRelationalOperatorDef()
     _file << "inline bool operator>=(const " << _class.ClassName << "& a, const ";
     _file << _class.ClassName << "& b)" << std::endl << "{" << std::endl;
     _file << "\treturn !(a<b);" << std::endl;
+    _file << "}" << std::endl << std::endl;
+}
+
+void ClassWriter::writeCopyOperatorDecl()
+{
+    _file << "\t" << _class.ClassName << "& operator=(const " << _class.ClassName << "& __in_);";
+    _file << std::endl;
+}
+
+void ClassWriter::writeCopyOperatorDef()
+{
+    _file << "inline " << _class.ClassName << "& " << _class.ClassName << "::operator=(const " << _class.ClassName;
+    _file << "& __in_)" << std::endl;
+    _file << "{" << std::endl << "\t// TODO : implement your assignment code here" << std::endl;
+    _file << "\treturn *this;" << std::endl;
     _file << "}" << std::endl << std::endl;
 }

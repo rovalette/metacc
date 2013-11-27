@@ -26,6 +26,8 @@ protected:
     void writeComparisonOperatorDef();
     void writeRelationalOperatorDecl();
     void writeRelationalOperatorDef();
+    void writeCopyOperatorDecl();
+    void writeCopyOperatorDef();
 
 public:
     ClassWriter();
