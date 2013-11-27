@@ -23,7 +23,9 @@ HEADERS  += src/views/mainwindow.hpp \
     src/utils/LogManager.hpp \
     src/utils/FileManager.hpp \
     src/model/classdefinition.hpp \
-    src/model/classwriter.hpp
+    src/model/classwriter.hpp \
+    src/model/fieldmember.hpp \
+    src/model/range.hpp
 
 FORMS    += ui/mainwindow.ui
 
