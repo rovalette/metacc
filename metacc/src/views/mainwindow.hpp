@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "src/model/classwriter.hpp"
+#include "ui/fieldmemberwindow.hpp"
 
 namespace Ui {
 class MainWindow;
@@ -29,11 +30,15 @@ private slots:
 
     void on_checkBox_OpComparison_stateChanged(int arg1);
 
+    void on_pushButton_Add_clicked();
+
 private:
     Ui::MainWindow *ui;
 
     ClassWriter     _writer;
     ClassDefinition _definition;
+
+    FieldMemberWindow * _fmw;
 
     bool checkFields();
     void createClassDefintionObject();

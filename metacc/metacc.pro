@@ -17,7 +17,8 @@ TEMPLATE = app
 SOURCES += src/main.cpp \
     src/views/mainwindow.cpp \
     src/model/classwriter.cpp \
-    src/utils/LogManager.cpp
+    src/utils/LogManager.cpp \
+    ui/fieldmemberwindow.cpp
 
 HEADERS  += src/views/mainwindow.hpp \
     src/utils/LogManager.hpp \
@@ -25,9 +26,11 @@ HEADERS  += src/views/mainwindow.hpp \
     src/model/classdefinition.hpp \
     src/model/classwriter.hpp \
     src/model/fieldmember.hpp \
-    src/model/range.hpp
+    src/model/range.hpp \
+    ui/fieldmemberwindow.hpp
 
-FORMS    += ui/mainwindow.ui
+FORMS    += ui/mainwindow.ui \
+    ui/fieldmemberwindow.ui
 
 OTHER_FILES +=
 

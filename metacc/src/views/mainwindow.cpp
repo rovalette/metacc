@@ -1,5 +1,6 @@
 #include "src/views/mainwindow.hpp"
 #include "ui_mainwindow.h"
+#include "src/utils/LogManager.hpp"
 #include <QMessageBox>
 #include <QFileDialog>
 #include <QString>
@@ -9,11 +10,14 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    _fmw = new FieldMemberWindow(this);
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete _fmw;
 }
 
 bool MainWindow::checkFields()
@@ -114,4 +118,10 @@ void MainWindow::on_checkBox_OpComparison_stateChanged(int arg1)
     {
         ui->checkBox_OpRelational->setChecked(false);
     }
+}
+
+void MainWindow::on_pushButton_Add_clicked()
+{
+    _fmw->init();
+    _fmw->show();
 }
