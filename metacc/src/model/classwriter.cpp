@@ -238,11 +238,37 @@ void ClassWriter::writeCopyOperatorDef()
 
 void ClassWriter::writeFieldMembers()
 {
+    _file << "public:" << std::endl;
+
+    // public
     for (std::vector<FieldMember>::const_iterator it = _class.fms.begin();
          it != _class.fms.end(); ++it)
     {
-        writeFieldMember(*it);
+        if ((*it).range == PUBLIC)
+            writeFieldMember(*it);
     }
+
+    _file << std::endl << "protected:" << std::endl;
+
+    // protected
+    for (std::vector<FieldMember>::const_iterator it = _class.fms.begin();
+         it != _class.fms.end(); ++it)
+    {
+        if ((*it).range == PROTECTED)
+            writeFieldMember(*it);
+    }
+
+    _file << std::endl << "private:" << std::endl;
+
+    // private
+    for (std::vector<FieldMember>::const_iterator it = _class.fms.begin();
+         it != _class.fms.end(); ++it)
+    {
+        if ((*it).range == PRIVATE)
+            writeFieldMember(*it);
+    }
+
+    _file << std::endl;
 }
 
 void ClassWriter::writeFieldMember(const FieldMember &fm)
