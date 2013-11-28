@@ -2,6 +2,8 @@
 #define __CLASS_DEFINITION_HPP__
 
 #include <string>
+#include <vector>
+#include "src/model/fieldmember.hpp"
 
 struct ClassDefinition
 {
@@ -19,6 +21,8 @@ struct ClassDefinition
     bool            ComparisonOperator;
     bool            RelationalOperator;
     bool            CopyOperator;
+
+    std::vector<FieldMember> fms;
 };
 
 #endif // __CLASS_DEFINITION_HPP__

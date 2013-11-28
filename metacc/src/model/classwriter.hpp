@@ -28,6 +28,8 @@ protected:
     void writeRelationalOperatorDef();
     void writeCopyOperatorDecl();
     void writeCopyOperatorDef();
+    void writeFieldMembers();
+    void writeFieldMember(const FieldMember& fm);
 
 public:
     ClassWriter();

@@ -24,6 +24,8 @@ void ClassWriter::writeHPP()
         writeIncludes();
         writeClassBeginning();
 
+        writeFieldMembers();
+
         _file << "public:" << std::endl;
         if (_class.DefaultConstructor)
             writeDefaultConstructorHPP();
@@ -232,4 +234,19 @@ void ClassWriter::writeCopyOperatorDef()
     _file << "{" << std::endl << "\t// TODO : implement your assignment code here" << std::endl;
     _file << "\treturn *this;" << std::endl;
     _file << "}" << std::endl << std::endl;
+}
+
+void ClassWriter::writeFieldMembers()
+{
+    for (std::vector<FieldMember>::const_iterator it = _class.fms.begin();
+         it != _class.fms.end(); ++it)
+    {
+        writeFieldMember(*it);
+    }
+}
+
+void ClassWriter::writeFieldMember(const FieldMember &fm)
+{
+    _file << "\t" << (fm.isStatic?"static ":"") << (fm.isConst?"const ":"");
+    _file << fm.Type << " " << fm.Name << ";" << std::endl;
 }

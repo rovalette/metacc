@@ -58,6 +58,7 @@ void MainWindow::createClassDefintionObject()
     _definition.RelationalOperator = ui->checkBox_OpRelational->isChecked();
     _definition.CopyOperator = ui->checkBox_OpCopy->isChecked();
 
+    _definition.fms = _fms;
 }
 
 void MainWindow::on_pushButton_Quit_clicked()
