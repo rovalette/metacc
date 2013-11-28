@@ -25,6 +25,7 @@ void FieldMemberWindow::init()
     ui->lineEdit_Default->setText("");
     ui->lineEdit_Name->setText("");
     ui->lineEdit_Type->setText("");
+    ui->lineEdit_Name->setFocus();
 }
 
 void FieldMemberWindow::on_pushButton_Cancel_clicked()
@@ -57,16 +58,18 @@ void FieldMemberWindow::on_pushButton_OK_clicked()
 
 bool FieldMemberWindow::checkFields()
 {
-    if (ui->lineEdit_Name->text().isEmpty())
+    // Name
+    if (ui->lineEdit_Name->text().isEmpty() || ui->lineEdit_Name->text().contains(' '))
     {
         QMessageBox msg(QMessageBox::Warning,
                         tr("MetaCC"),
-                        tr("Le nom de l'attribut doit être renseigné."),
+                        tr("Le nom de l'attribut doit être renseigné. Il ne doit pas contenir d'espace."),
                         0, this);
         msg.exec();
         return false;
     }
 
+    // Type
     if (ui->lineEdit_Type->text().isEmpty())
     {
         QMessageBox msg(QMessageBox::Warning,
@@ -77,6 +80,7 @@ bool FieldMemberWindow::checkFields()
         return false;
     }
 
+    // default value for const field member
     if (ui->checkBox_Const->isChecked() && ui->lineEdit_Default->text().isEmpty())
     {
         QMessageBox msg(QMessageBox::Warning,
@@ -88,4 +92,80 @@ bool FieldMemberWindow::checkFields()
     }
 
     return true;
+}
+
+void FieldMemberWindow::on_lineEdit_Name_textChanged(const QString &arg1)
+{
+    if (arg1.isEmpty() || arg1.contains(' '))
+    {
+        QPalette pal = ui->lineEdit_Name->palette();
+        pal.setColor(QPalette::Base, QColor(255,30,30));
+        ui->lineEdit_Name->setPalette(pal);
+    }
+    else
+    {
+        QPalette pal = ui->lineEdit_Name->palette();
+        pal.setColor(QPalette::Base, QColor(30,255,30));
+        ui->lineEdit_Name->setPalette(pal);
+    }
+}
+
+void FieldMemberWindow::on_lineEdit_Type_textChanged(const QString &arg1)
+{
+    if (arg1.isEmpty())
+    {
+        QPalette pal = ui->lineEdit_Type->palette();
+        pal.setColor(QPalette::Base, QColor(255,50,50));
+        ui->lineEdit_Type->setPalette(pal);
+    }
+    else
+    {
+        QPalette pal = ui->lineEdit_Type->palette();
+        pal.setColor(QPalette::Base, QColor(50,255,50));
+        ui->lineEdit_Type->setPalette(pal);
+    }
+}
+
+void FieldMemberWindow::on_checkBox_Const_stateChanged(int arg1)
+{
+    if (arg1 == Qt::Checked)
+    {
+        if (ui->lineEdit_Default->text().isEmpty())
+        {
+            QPalette pal = ui->lineEdit_Default->palette();
+            pal.setColor(QPalette::Base, QColor(255,50,50));
+            ui->lineEdit_Default->setPalette(pal);
+        }
+        else
+        {
+            QPalette pal = ui->lineEdit_Default->palette();
+            pal.setColor(QPalette::Base, QColor(50,255,50));
+            ui->lineEdit_Default->setPalette(pal);
+        }
+    }
+    else if (arg1 == Qt::Unchecked)
+    {
+        QPalette pal = ui->lineEdit_Default->palette();
+        pal.setColor(QPalette::Base, QColor(255,255,255));
+        ui->lineEdit_Default->setPalette(pal);
+    }
+}
+
+void FieldMemberWindow::on_lineEdit_Default_textChanged(const QString &arg1)
+{
+    if (ui->checkBox_Const->isChecked())
+    {
+        if (arg1.isEmpty())
+        {
+            QPalette pal = ui->lineEdit_Default->palette();
+            pal.setColor(QPalette::Base, QColor(255,50,50));
+            ui->lineEdit_Default->setPalette(pal);
+        }
+        else
+        {
+            QPalette pal = ui->lineEdit_Default->palette();
+            pal.setColor(QPalette::Base, QColor(50,255,50));
+            ui->lineEdit_Default->setPalette(pal);
+        }
+    }
 }

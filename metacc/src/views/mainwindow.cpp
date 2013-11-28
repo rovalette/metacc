@@ -131,8 +131,16 @@ void MainWindow::addFieldMember(FieldMember fm)
     int row = ui->listWidget_FieldMember->count();
     _fms.push_back(fm);
 
-    std::string label = fm.Name;
-    label += " (" + fm.Type += ")";
+    std::string label = (fm.range==PRIVATE?"- ":(fm.range==PROTECTED?"# ":"+ "));
+    label += fm.Name;
+    label += " (" + fm.Type + ") ";
+    if (fm.isStatic)
+    {
+        label += "[static";
+        label += (fm.isConst?", const]":"]");
+    }
+    else if (fm.isConst)
+        label += "[const]";
 
     ui->listWidget_FieldMember->insertItem(
                 row,

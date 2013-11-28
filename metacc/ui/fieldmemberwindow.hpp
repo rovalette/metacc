@@ -23,6 +23,14 @@ private slots:
 
     void on_pushButton_OK_clicked();
 
+    void on_lineEdit_Name_textChanged(const QString &arg1);
+
+    void on_lineEdit_Type_textChanged(const QString &arg1);
+
+    void on_checkBox_Const_stateChanged(int arg1);
+
+    void on_lineEdit_Default_textChanged(const QString &arg1);
+
 private:
     Ui::FieldMemberWindow *ui;
 
