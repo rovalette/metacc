@@ -244,7 +244,7 @@ void ClassWriter::writeFieldMembers()
     for (std::vector<FieldMember>::const_iterator it = _class.fms.begin();
          it != _class.fms.end(); ++it)
     {
-        if ((*it).range == PUBLIC)
+        if ((*it).Range == PUBLIC)
             writeFieldMember(*it);
     }
 
@@ -254,7 +254,7 @@ void ClassWriter::writeFieldMembers()
     for (std::vector<FieldMember>::const_iterator it = _class.fms.begin();
          it != _class.fms.end(); ++it)
     {
-        if ((*it).range == PROTECTED)
+        if ((*it).Range == PROTECTED)
             writeFieldMember(*it);
     }
 
@@ -264,7 +264,7 @@ void ClassWriter::writeFieldMembers()
     for (std::vector<FieldMember>::const_iterator it = _class.fms.begin();
          it != _class.fms.end(); ++it)
     {
-        if ((*it).range == PRIVATE)
+        if ((*it).Range == PRIVATE)
             writeFieldMember(*it);
     }
 

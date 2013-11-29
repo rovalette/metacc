@@ -6,7 +6,7 @@
 
 struct FieldMember
 {
-    RANGE               range;
+    RANGE               Range;
 
     std::string         Type;
     std::string         Name;
