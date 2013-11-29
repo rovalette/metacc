@@ -47,7 +47,7 @@ void FieldMemberWindow::on_pushButton_OK_clicked()
         fm.isStatic = ui->checkBox_Static->isChecked();
         fm.hasGet = ui->checkBox_Get->isChecked();
         fm.hasSet = ui->checkBox_Set->isChecked();
-        fm.range = (RANGE) ui->comboBox_Range->currentIndex();
+        fm.Range = (RANGE) ui->comboBox_Range->currentIndex();
 
         MainWindow * mw = dynamic_cast<MainWindow*>(parent());
 

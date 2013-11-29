@@ -132,7 +132,7 @@ void MainWindow::addFieldMember(FieldMember fm)
     int row = ui->listWidget_FieldMember->count();
     _fms.push_back(fm);
 
-    std::string label = (fm.range==PRIVATE?"- ":(fm.range==PROTECTED?"# ":"+ "));
+    std::string label = (fm.Range==PRIVATE?"- ":(fm.Range==PROTECTED?"# ":"+ "));
     label += fm.Name;
     label += " (" + fm.Type + ") ";
     if (fm.isStatic)

@@ -28,7 +28,8 @@ HEADERS  += src/views/mainwindow.hpp \
     src/model/fieldmember.hpp \
     src/model/range.hpp \
     ui/fieldmemberwindow.hpp \
-    src/model/parameter.hpp
+    src/model/parameter.hpp \
+    src/model/method.hpp
 
 FORMS    += ui/mainwindow.ui \
     ui/fieldmemberwindow.ui
