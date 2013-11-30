@@ -18,7 +18,7 @@
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>2</number>
+       <number>3</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -245,12 +245,21 @@
        <attribute name="title">
         <string>Attributs</string>
        </attribute>
-       <layout class="QVBoxLayout" name="verticalLayout_10">
+       <layout class="QVBoxLayout" name="verticalLayout_11">
         <item>
-         <widget class="QListWidget" name="listWidget_FieldMember">
-          <property name="sortingEnabled">
-           <bool>false</bool>
+         <widget class="QGroupBox" name="groupBox_6">
+          <property name="title">
+           <string>Liste des attributs</string>
           </property>
+          <layout class="QVBoxLayout" name="verticalLayout_10">
+           <item>
+            <widget class="QListWidget" name="listWidget_FieldMember">
+             <property name="sortingEnabled">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </widget>
         </item>
         <item>
@@ -269,6 +278,17 @@
            </spacer>
           </item>
           <item>
+           <widget class="QPushButton" name="pushButton_Remove">
+            <property name="text">
+             <string>Retirer</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../resources/resources.qrc">
+              <normaloff>:/images/images/moins.png</normaloff>:/images/images/moins.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
            <widget class="QPushButton" name="pushButton_Add">
             <property name="text">
              <string>Ajouter</string>
@@ -279,14 +299,61 @@
             </property>
            </widget>
           </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_4">
+       <attribute name="title">
+        <string>Méthodes</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_13">
+        <item>
+         <widget class="QGroupBox" name="groupBox_7">
+          <property name="title">
+           <string>Liste des méthodes</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_12">
+           <item>
+            <widget class="QListView" name="listView_Methods"/>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_6">
           <item>
-           <widget class="QPushButton" name="pushButton_Remove">
+           <spacer name="horizontalSpacer_3">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_RemoveMethod">
             <property name="text">
              <string>Retirer</string>
             </property>
             <property name="icon">
              <iconset resource="../resources/resources.qrc">
               <normaloff>:/images/images/moins.png</normaloff>:/images/images/moins.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_AddMethod">
+            <property name="text">
+             <string>Ajouter</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../resources/resources.qrc">
+              <normaloff>:/images/images/plus.png</normaloff>:/images/images/plus.png</iconset>
             </property>
            </widget>
           </item>
