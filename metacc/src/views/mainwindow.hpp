@@ -5,6 +5,7 @@
 #include <vector>
 #include "src/model/classwriter.hpp"
 #include "ui/fieldmemberwindow.hpp"
+#include "ui/methodview.hpp"
 
 namespace Ui {
 class MainWindow;
@@ -35,6 +36,8 @@ private slots:
 
     void on_pushButton_Add_clicked();
 
+    void on_pushButton_AddMethod_clicked();
+
 private:
     Ui::MainWindow *ui;
 
@@ -43,6 +46,8 @@ private:
 
     FieldMemberWindow       *   _fmw;
     std::vector<FieldMember>    _fms;
+
+    MethodView              *   _mv;
 
     bool checkFields();
     void createClassDefintionObject();

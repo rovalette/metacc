@@ -18,7 +18,8 @@ SOURCES += src/main.cpp \
     src/views/mainwindow.cpp \
     src/model/classwriter.cpp \
     src/utils/LogManager.cpp \
-    ui/fieldmemberwindow.cpp
+    ui/fieldmemberwindow.cpp \
+    ui/methodview.cpp
 
 HEADERS  += src/views/mainwindow.hpp \
     src/utils/LogManager.hpp \
@@ -29,10 +30,12 @@ HEADERS  += src/views/mainwindow.hpp \
     src/model/range.hpp \
     ui/fieldmemberwindow.hpp \
     src/model/parameter.hpp \
-    src/model/method.hpp
+    src/model/method.hpp \
+    ui/methodview.hpp
 
 FORMS    += ui/mainwindow.ui \
-    ui/fieldmemberwindow.ui
+    ui/fieldmemberwindow.ui \
+    ui/methodview.ui
 
 OTHER_FILES +=
 

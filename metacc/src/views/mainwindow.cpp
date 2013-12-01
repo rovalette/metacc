@@ -12,12 +12,14 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     _fmw = new FieldMemberWindow(this);
+    _mv = new MethodView(this);
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
     delete _fmw;
+    delete _mv;
 }
 
 bool MainWindow::checkFields()
@@ -146,4 +148,10 @@ void MainWindow::addFieldMember(FieldMember fm)
     ui->listWidget_FieldMember->insertItem(
                 row,
                 QString(label.c_str()));
+}
+
+void MainWindow::on_pushButton_AddMethod_clicked()
+{
+    _mv->init();
+    _mv->show();
 }
