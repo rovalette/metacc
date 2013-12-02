@@ -154,6 +154,38 @@ void MainWindow::addFieldMember(FieldMember fm)
                 QString(label.c_str()));
 }
 
+void MainWindow::addMethod(Method m)
+{
+    int row = ui->listWidget_Methods->count();
+    _methods.push_back(m);
+
+    std::string label = (m.Range==PRIVATE?"- ":(m.Range==PROTECTED?"# ":"+ "));
+    label += m.Name + "(";
+
+    if (m.Parameters.empty())
+    {
+        label += "void";
+    }
+    else
+    {
+        std::vector<Parameter>::const_iterator it = m.Parameters.begin();
+        label += (it->isConst?"const ":"") + it->Type;
+        ++it;
+        for (; it != m.Parameters.end() ; ++it)
+        {
+            label += ", ";
+            label += (it->isConst?"const ":"") + it->Type;
+        }
+    }
+
+    label += ") : ";
+    label += m.ReturnedValue;
+
+    ui->listWidget_Methods->insertItem(
+                row,
+                QString(label.c_str()));
+}
+
 void MainWindow::on_pushButton_AddMethod_clicked()
 {
     _mv->init();

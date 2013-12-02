@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include "src/model/method.hpp"
+#include "ui/paramwindow.hpp"
 
 namespace Ui {
 class MethodView;
@@ -18,6 +19,8 @@ public:
 
     void init();
 
+    void addParameter(Parameter p);
+
 private slots:
     void on_pushButton_Cancel_clicked();
 
@@ -31,8 +34,14 @@ private slots:
 
     void on_pushButton_OK_clicked();
 
+    void on_pushButton_Add_clicked();
+
 private:
     Ui::MethodView *ui;
+
+    ParamWindow          *  _pw;
+
+    std::vector<Parameter>  _params;
 
     bool checkFields();
 };

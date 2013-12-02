@@ -1,5 +1,6 @@
 #include "methodview.hpp"
 #include "ui_methodview.h"
+#include "src/views/mainwindow.hpp"
 #include <QMessageBox>
 
 MethodView::MethodView(QWidget *parent) :
@@ -7,11 +8,14 @@ MethodView::MethodView(QWidget *parent) :
     ui(new Ui::MethodView)
 {
     ui->setupUi(this);
+
+    _pw = new ParamWindow(this);
 }
 
 MethodView::~MethodView()
 {
     delete ui;
+    delete _pw;
 }
 
 void MethodView::init()
@@ -117,5 +121,43 @@ void MethodView::on_pushButton_OK_clicked()
 {
     if (checkFields())
     {
+        Method m;
+
+        m.Name = ui->lineEdit_Name->text().toStdString();
+        m.ReturnedValue = ui->lineEdit_ReturnType->text().toStdString();
+        m.isAbstract = ui->checkBox_Abstract->isChecked();
+        m.isConst = ui->checkBox_Const->isChecked();
+        m.isStatic = ui->checkBox_Static->isChecked();
+        m.isVirtual = ui->checkBox_Virtual->isChecked();
+        m.Parameters = _params;
+        m.Range = (RANGE) ui->comboBox_Range->currentIndex();
+
+        MainWindow * mw = dynamic_cast<MainWindow*>(parent());
+        mw->addMethod(m);
+        close();
     }
+}
+
+void MethodView::on_pushButton_Add_clicked()
+{
+    _pw->init();
+    _pw->show();
+}
+
+void MethodView::addParameter(Parameter p)
+{
+    int row = ui->listWidget_Param->count();
+    _params.push_back(p);
+
+    std::string label = (p.isConst?"const ":"");
+    label += p.Type + " " + p.Name;
+
+    if (!p.Default.empty())
+    {
+        label += " = " + p.Default;
+    }
+
+    ui->listWidget_Param->insertItem(
+                row,
+                QString(label.c_str()));
 }

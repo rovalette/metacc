@@ -20,6 +20,7 @@ public:
     ~MainWindow();
 
     void addFieldMember(FieldMember fm);
+    void addMethod(Method m);
 
 private slots:
     void on_pushButton_Quit_clicked();

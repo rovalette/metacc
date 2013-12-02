@@ -12,7 +12,7 @@ struct Method
 
     std::string     Name;
 
-    Parameter       ReturnedValue;
+    std::string     ReturnedValue;
 
     std::vector<Parameter>  Parameters;
 
