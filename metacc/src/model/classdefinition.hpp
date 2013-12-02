@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include "src/model/fieldmember.hpp"
+#include "src/model/method.hpp"
 
 struct ClassDefinition
 {
@@ -22,7 +23,8 @@ struct ClassDefinition
     bool            RelationalOperator;
     bool            CopyOperator;
 
-    std::vector<FieldMember> fms;
+    std::vector<FieldMember>    fms;
+    std::vector<Method>         ms;
 };
 
 #endif // __CLASS_DEFINITION_HPP__

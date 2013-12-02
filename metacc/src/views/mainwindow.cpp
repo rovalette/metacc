@@ -65,6 +65,7 @@ void MainWindow::createClassDefintionObject()
     _definition.CopyOperator = ui->checkBox_OpCopy->isChecked();
 
     _definition.fms = _fms;
+    _definition.ms = _methods;
 }
 
 void MainWindow::on_pushButton_Quit_clicked()

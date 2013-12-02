@@ -29,6 +29,8 @@ void MethodView::init()
     ui->comboBox_Range->setCurrentIndex(0);
     ui->listWidget_Param->clear();
 
+    _params.clear();
+
     QPalette pal = ui->lineEdit_Name->palette();
     pal.setColor(QPalette::Base, QColor(255,50,50));
     ui->lineEdit_Name->setPalette(pal);

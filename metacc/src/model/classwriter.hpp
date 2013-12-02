@@ -30,6 +30,10 @@ protected:
     void writeCopyOperatorDef();
     void writeFieldMembers();
     void writeFieldMember(const FieldMember& fm);
+    void writeMethodsDecl();
+    void writeMethodDecl(const Method& m);
+    void writeMethodsDef();
+    void writeMethodDef(const Method& m);
 
 public:
     ClassWriter();

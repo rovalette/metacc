@@ -26,20 +26,7 @@ void ClassWriter::writeHPP()
 
         writeFieldMembers();
 
-        _file << "public:" << std::endl;
-        if (_class.DefaultConstructor)
-            writeDefaultConstructorHPP();
-        if (_class.CopyConstructor)
-            writeCopyConstructorHPP();
-        if (_class.Destructor)
-            writeDestructorHPP();
-        _file << std::endl;
-        if (_class.CopyOperator)
-            writeCopyOperatorDecl();
-        if (_class.ComparisonOperator)
-            writeComparisonOperatorDecl();
-        if (_class.RelationalOperator)
-            writeRelationalOperatorDecl();
+        writeMethodsDecl();
 
         writeClassEnding();
 
@@ -84,6 +71,11 @@ void ClassWriter::writeCPP()
         {
             writeDestructorCPP();
             _file << std::endl;
+        }
+
+        if (!_class.ms.empty())
+        {
+            writeMethodsDef();
         }
 
         _file.close();
@@ -275,4 +267,119 @@ void ClassWriter::writeFieldMember(const FieldMember &fm)
 {
     _file << "\t" << (fm.isStatic?"static ":"") << (fm.isConst?"const ":"");
     _file << fm.Type << " " << fm.Name << ";" << std::endl;
+}
+
+void ClassWriter::writeMethodsDecl()
+{
+    _file << "public:" << std::endl;
+
+    if (_class.DefaultConstructor)
+        writeDefaultConstructorHPP();
+    if (_class.CopyConstructor)
+        writeCopyConstructorHPP();
+    if (_class.Destructor)
+        writeDestructorHPP();
+    _file << std::endl;
+    if (_class.CopyOperator)
+        writeCopyOperatorDecl();
+    if (_class.ComparisonOperator)
+        writeComparisonOperatorDecl();
+    if (_class.RelationalOperator)
+        writeRelationalOperatorDecl();
+
+    // public
+    for (std::vector<Method>::const_iterator it = _class.ms.begin();
+         it != _class.ms.end(); ++it)
+    {
+        if (it->Range == PUBLIC)
+            writeMethodDecl(*it);
+    }
+
+    _file << "protected:" << std::endl;
+    // public
+    for (std::vector<Method>::const_iterator it = _class.ms.begin();
+         it != _class.ms.end(); ++it)
+    {
+        if (it->Range == PROTECTED)
+            writeMethodDecl(*it);
+    }
+
+    _file << "private:" << std::endl;
+    // public
+    for (std::vector<Method>::const_iterator it = _class.ms.begin();
+         it != _class.ms.end(); ++it)
+    {
+        if (it->Range == PRIVATE)
+            writeMethodDecl(*it);
+    }
+
+}
+
+void ClassWriter::writeMethodDecl(const Method& m)
+{
+    _file << "\t" << (m.isVirtual?"virtual ":"") << (m.isStatic?"static ":"");
+    _file << m.ReturnedValue << " " << m.Name << "(";
+
+    if (!m.Parameters.empty())
+    {
+        std::vector<Parameter>::const_iterator it = m.Parameters.begin();
+
+        _file << (it->isConst?"const ":"") << it->Type;
+        if (!it->Default.empty())
+        {
+            _file << " = " << it->Default;
+        }
+        ++it;
+        for (; it != m.Parameters.end() ; ++it)
+        {
+            _file << ", ";
+            _file << (it->isConst?"const ":"") << it->Type;
+            if (!it->Default.empty())
+            {
+                _file << " = " << it->Default;
+            }
+        }
+    }
+
+    _file << ")";
+    _file << (m.isConst?" const":"");
+    _file << (m.isAbstract?" = 0":"");
+    _file << ";" << std::endl;
+}
+
+void ClassWriter::writeMethodsDef()
+{
+    for (std::vector<Method>::const_iterator it = _class.ms.begin() ;
+         it != _class.ms.end() ; ++it)
+    {
+        if (!it->isAbstract) // && !it->isInline)
+        {
+            writeMethodDef(*it);
+        }
+    }
+}
+
+void ClassWriter::writeMethodDef(const Method& m)
+{
+    _file << (m.isVirtual?"virtual ":"") << (m.isStatic?"static ":"");
+    _file << m.ReturnedValue << " " << _class.ClassName << "::" << m.Name << "(";
+
+    if (!m.Parameters.empty())
+    {
+        std::vector<Parameter>::const_iterator it = m.Parameters.begin();
+
+        _file << (it->isConst?"const ":"") << it->Type << " " << it->Name;
+        ++it;
+        for (; it != m.Parameters.end() ; ++it)
+        {
+            _file << ", ";
+            _file << (it->isConst?"const ":"") << it->Type << " " << it->Name;
+        }
+    }
+
+    _file << ")";
+    _file << (m.isConst?" const":"");
+
+    _file << std::endl << "{" << std::endl << std::endl << "}";
+    _file << std::endl << std::endl;
 }
