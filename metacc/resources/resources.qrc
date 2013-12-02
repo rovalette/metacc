@@ -4,5 +4,6 @@
         <file>images/annuler.png</file>
         <file>images/moins.png</file>
         <file>images/plus.png</file>
+        <file>images/init.png</file>
     </qresource>
 </RCC>

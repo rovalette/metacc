@@ -83,7 +83,23 @@
            </widget>
           </item>
           <item row="2" column="1">
-           <widget class="QComboBox" name="comboBox_Range"/>
+           <widget class="QComboBox" name="comboBox_Range">
+            <item>
+             <property name="text">
+              <string>public</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>protected</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>private</string>
+             </property>
+            </item>
+           </widget>
           </item>
           <item row="5" column="0">
            <widget class="QLabel" name="label_6">

@@ -13,6 +13,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
     _fmw = new FieldMemberWindow(this);
     _mv = new MethodView(this);
+
+    QPalette pal = ui->lineEdit_ClassName->palette();
+    pal.setColor(QPalette::Base, QColor(255,50,50));
+    ui->lineEdit_ClassName->setPalette(pal);
 }
 
 MainWindow::~MainWindow()
@@ -154,4 +158,59 @@ void MainWindow::on_pushButton_AddMethod_clicked()
 {
     _mv->init();
     _mv->show();
+}
+
+void MainWindow::on_lineEdit_ClassName_textChanged(const QString &arg1)
+{
+    if (arg1.isEmpty() || arg1.contains(' '))
+    {
+        QPalette pal = ui->lineEdit_ClassName->palette();
+        pal.setColor(QPalette::Base, QColor(255,50,50));
+        ui->lineEdit_ClassName->setPalette(pal);
+    }
+    else
+    {
+        QPalette pal = ui->lineEdit_ClassName->palette();
+        pal.setColor(QPalette::Base, QColor(255,255,255));
+        ui->lineEdit_ClassName->setPalette(pal);
+    }
+}
+
+void MainWindow::init()
+{
+    if (_fmw)
+    {
+        delete _fmw;
+    }
+    if (_mv)
+    {
+        delete _mv;
+    }
+    _fmw = new FieldMemberWindow(this);
+    _mv = new MethodView(this);
+
+    ui->lineEdit_ClassName->setText("");
+    ui->lineEdit_Path->setText("/tmp/");
+    QPalette pal = ui->lineEdit_ClassName->palette();
+    pal.setColor(QPalette::Base, QColor(255,50,50));
+    ui->lineEdit_ClassName->setPalette(pal);
+
+    ui->checkBox_CopyConstructor->setChecked(false);
+    ui->checkBox_DefaultConstructor->setChecked(true);
+    ui->checkBox_Destructor->setChecked(true);
+    ui->checkBox_OpComparison->setChecked(false);
+    ui->checkBox_OpCopy->setChecked(false);
+    ui->checkBox_OpRelational->setChecked(false);
+    ui->checkBox_VirtualDestructor->setChecked(false);
+
+    ui->listWidget_FieldMember->clear();
+    ui->listWidget_Methods->clear();
+
+    _fms.clear();
+    _methods.clear();
+}
+
+void MainWindow::on_pushButton_Erase_clicked()
+{
+    init();
 }

@@ -2,6 +2,7 @@
 #define METHODVIEW_HPP
 
 #include <QDialog>
+#include "src/model/method.hpp"
 
 namespace Ui {
 class MethodView;
@@ -20,8 +21,20 @@ public:
 private slots:
     void on_pushButton_Cancel_clicked();
 
+    void on_lineEdit_Name_textChanged(const QString &arg1);
+
+    void on_lineEdit_ReturnType_textChanged(const QString &arg1);
+
+    void on_checkBox_Abstract_stateChanged(int arg1);
+
+    void on_checkBox_Virtual_stateChanged(int arg1);
+
+    void on_pushButton_OK_clicked();
+
 private:
     Ui::MethodView *ui;
+
+    bool checkFields();
 };
 
 #endif // METHODVIEW_HPP

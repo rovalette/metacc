@@ -26,6 +26,13 @@ void FieldMemberWindow::init()
     ui->lineEdit_Name->setText("");
     ui->lineEdit_Type->setText("");
     ui->lineEdit_Name->setFocus();
+
+    QPalette pal = ui->lineEdit_Name->palette();
+    pal.setColor(QPalette::Base, QColor(255,50,50));
+    ui->lineEdit_Name->setPalette(pal);
+    pal = ui->lineEdit_Type->palette();
+    pal.setColor(QPalette::Base, QColor(255,50,50));
+    ui->lineEdit_Type->setPalette(pal);
 }
 
 void FieldMemberWindow::on_pushButton_Cancel_clicked()
@@ -99,13 +106,13 @@ void FieldMemberWindow::on_lineEdit_Name_textChanged(const QString &arg1)
     if (arg1.isEmpty() || arg1.contains(' '))
     {
         QPalette pal = ui->lineEdit_Name->palette();
-        pal.setColor(QPalette::Base, QColor(255,30,30));
+        pal.setColor(QPalette::Base, QColor(255,50,50));
         ui->lineEdit_Name->setPalette(pal);
     }
     else
     {
         QPalette pal = ui->lineEdit_Name->palette();
-        pal.setColor(QPalette::Base, QColor(30,255,30));
+        pal.setColor(QPalette::Base, QColor(255,255,255));
         ui->lineEdit_Name->setPalette(pal);
     }
 }
@@ -121,7 +128,7 @@ void FieldMemberWindow::on_lineEdit_Type_textChanged(const QString &arg1)
     else
     {
         QPalette pal = ui->lineEdit_Type->palette();
-        pal.setColor(QPalette::Base, QColor(50,255,50));
+        pal.setColor(QPalette::Base, QColor(255,255,255));
         ui->lineEdit_Type->setPalette(pal);
     }
 }
@@ -139,7 +146,7 @@ void FieldMemberWindow::on_checkBox_Const_stateChanged(int arg1)
         else
         {
             QPalette pal = ui->lineEdit_Default->palette();
-            pal.setColor(QPalette::Base, QColor(50,255,50));
+            pal.setColor(QPalette::Base, QColor(255,255,255));
             ui->lineEdit_Default->setPalette(pal);
         }
     }
@@ -164,7 +171,7 @@ void FieldMemberWindow::on_lineEdit_Default_textChanged(const QString &arg1)
         else
         {
             QPalette pal = ui->lineEdit_Default->palette();
-            pal.setColor(QPalette::Base, QColor(50,255,50));
+            pal.setColor(QPalette::Base, QColor(255,255,255));
             ui->lineEdit_Default->setPalette(pal);
         }
     }

@@ -43,12 +43,15 @@
              <item row="0" column="1">
               <widget class="QLineEdit" name="lineEdit_ClassName">
                <property name="placeholderText">
-                <string>ClassName</string>
+                <string/>
                </property>
               </widget>
              </item>
              <item row="2" column="1">
               <widget class="QCheckBox" name="checkBox_TwoFiles">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
                <property name="text">
                 <string/>
                </property>
@@ -315,7 +318,7 @@
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_12">
            <item>
-            <widget class="QListView" name="listView_Methods"/>
+            <widget class="QListWidget" name="listWidget_Methods"/>
            </item>
           </layout>
          </widget>
@@ -386,6 +389,17 @@
         <property name="icon">
          <iconset resource="../resources/resources.qrc">
           <normaloff>:/images/images/annuler.png</normaloff>:/images/images/annuler.png</iconset>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButton_Erase">
+        <property name="text">
+         <string>Effacer</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../resources/resources.qrc">
+          <normaloff>:/images/images/init.png</normaloff>:/images/images/init.png</iconset>
         </property>
        </widget>
       </item>

@@ -38,6 +38,10 @@ private slots:
 
     void on_pushButton_AddMethod_clicked();
 
+    void on_lineEdit_ClassName_textChanged(const QString &arg1);
+
+    void on_pushButton_Erase_clicked();
+
 private:
     Ui::MainWindow *ui;
 
@@ -48,7 +52,9 @@ private:
     std::vector<FieldMember>    _fms;
 
     MethodView              *   _mv;
+    std::vector<Method>         _methods;
 
+    void init();
     bool checkFields();
     void createClassDefintionObject();
 
