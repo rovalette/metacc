@@ -24,6 +24,7 @@ void MethodView::init()
     ui->checkBox_Const->setChecked(false);
     ui->checkBox_Static->setChecked(false);
     ui->checkBox_Virtual->setChecked(false);
+    ui->checkBox_Inline->setChecked(false);
     ui->lineEdit_Name->setText("");
     ui->lineEdit_ReturnType->setText("");
     ui->comboBox_Range->setCurrentIndex(0);
@@ -131,6 +132,7 @@ void MethodView::on_pushButton_OK_clicked()
         m.isConst = ui->checkBox_Const->isChecked();
         m.isStatic = ui->checkBox_Static->isChecked();
         m.isVirtual = ui->checkBox_Virtual->isChecked();
+        m.isInline = ui->checkBox_Inline->isChecked();
         m.Parameters = _params;
         m.Range = (RANGE) ui->comboBox_Range->currentIndex();
 

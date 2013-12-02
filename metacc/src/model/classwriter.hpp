@@ -34,6 +34,8 @@ protected:
     void writeMethodDecl(const Method& m);
     void writeMethodsDef();
     void writeMethodDef(const Method& m);
+    void writeMethodsInline();
+    void writeMethodInline(const Method& m);
 
 public:
     ClassWriter();

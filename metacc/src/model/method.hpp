@@ -20,6 +20,7 @@ struct Method
     bool            isConst;
     bool            isVirtual;
     bool            isAbstract;
+    bool            isInline;
 };
 
 #endif // __METHOD_HPP__

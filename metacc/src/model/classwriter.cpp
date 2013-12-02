@@ -37,6 +37,8 @@ void ClassWriter::writeHPP()
         if (_class.RelationalOperator)
             writeRelationalOperatorDef();
 
+        writeMethodsInline();
+
         writeDownGuardian();
         _file.close();
         log << "File closed" << std::endl;
@@ -186,7 +188,7 @@ void ClassWriter::writeRelationalOperatorDecl()
     _file << "\tfriend bool operator>(const " << _class.ClassName << "& a, const ";
     _file << _class.ClassName << "& b);" << std::endl;
     _file << "\tfriend bool operator>=(const " << _class.ClassName << "& a, const ";
-    _file << _class.ClassName << "& b);" << std::endl;
+    _file << _class.ClassName << "& b);" << std::endl << std::endl;
 }
 
 void ClassWriter::writeRelationalOperatorDef()
@@ -216,7 +218,7 @@ void ClassWriter::writeRelationalOperatorDef()
 void ClassWriter::writeCopyOperatorDecl()
 {
     _file << "\t" << _class.ClassName << "& operator=(const " << _class.ClassName << "& __in_);";
-    _file << std::endl;
+    _file << std::endl << std::endl;
 }
 
 void ClassWriter::writeCopyOperatorDef()
@@ -295,7 +297,7 @@ void ClassWriter::writeMethodsDecl()
             writeMethodDecl(*it);
     }
 
-    _file << "protected:" << std::endl;
+    _file << std::endl << "protected:" << std::endl;
     // public
     for (std::vector<Method>::const_iterator it = _class.ms.begin();
          it != _class.ms.end(); ++it)
@@ -304,7 +306,7 @@ void ClassWriter::writeMethodsDecl()
             writeMethodDecl(*it);
     }
 
-    _file << "private:" << std::endl;
+    _file << std::endl << "private:" << std::endl;
     // public
     for (std::vector<Method>::const_iterator it = _class.ms.begin();
          it != _class.ms.end(); ++it)
@@ -352,7 +354,7 @@ void ClassWriter::writeMethodsDef()
     for (std::vector<Method>::const_iterator it = _class.ms.begin() ;
          it != _class.ms.end() ; ++it)
     {
-        if (!it->isAbstract) // && !it->isInline)
+        if (!it->isAbstract || !it->isInline)
         {
             writeMethodDef(*it);
         }
@@ -380,6 +382,43 @@ void ClassWriter::writeMethodDef(const Method& m)
     _file << ")";
     _file << (m.isConst?" const":"");
 
-    _file << std::endl << "{" << std::endl << std::endl << "}";
+    _file << std::endl << "{" << std::endl << "\t// TODO : your code here" << std::endl << "}";
+    _file << std::endl << std::endl;
+}
+
+void ClassWriter::writeMethodsInline()
+{
+    for (std::vector<Method>::const_iterator it = _class.ms.begin() ;
+         it != _class.ms.end() ; ++it)
+    {
+        if (it->isInline)
+        {
+            writeMethodInline(*it);
+        }
+    }
+}
+
+void ClassWriter::writeMethodInline(const Method& m)
+{
+    _file << "inline " << (m.isVirtual?"virtual ":"") << (m.isStatic?"static ":"");
+    _file << m.ReturnedValue << " " << _class.ClassName << "::" << m.Name << "(";
+
+    if (!m.Parameters.empty())
+    {
+        std::vector<Parameter>::const_iterator it = m.Parameters.begin();
+
+        _file << (it->isConst?"const ":"") << it->Type << " " << it->Name;
+        ++it;
+        for (; it != m.Parameters.end() ; ++it)
+        {
+            _file << ", ";
+            _file << (it->isConst?"const ":"") << it->Type << " " << it->Name;
+        }
+    }
+
+    _file << ")";
+    _file << (m.isConst?" const":"");
+
+    _file << std::endl << "{" << std::endl << "\t// TODO : your code here" << std::endl << "}";
     _file << std::endl << std::endl;
 }
