@@ -1,4 +1,4 @@
 metacc
 ======
 
-Meta Code Creator
+just for fun
